@@ -69,6 +69,7 @@
 .header-img-wrap{
     margin-left: 50px;
     margin-top : 30px;
+    cursor: pointer;
 }
 .header-img-wrap img{
 	cursor: pointer;
