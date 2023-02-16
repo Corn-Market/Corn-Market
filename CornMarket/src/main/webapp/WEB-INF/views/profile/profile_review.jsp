@@ -7,9 +7,11 @@ uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
     <meta charset="UTF-8" />
     <title>프로필 - ${profile.nickname}</title>
     <link rel="stylesheet" href="${path}/resources/css/profile/profile.css" />
+    <link rel="icon" type="image/x-icon" href="${path}/resources/images/style/favicon.ico" />
+    <link rel="shortcut icon" type="image/x-icon" href="${path}/resources/images/style/favicon.ico" />
   </head>
   <body>
-  <jsp:include page="../base/header.jsp"/>
+    <jsp:include page="../base/header.jsp" />
     <section class="profile-section">
       <div class="profile_wrap">
         <div class="profile_first">
@@ -71,9 +73,15 @@ uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
               <div class="profile_status review"><a href="<c:url value='/profile/review' />">거래후기</a></div>
             </c:if>
             <c:if test="${sessionScope.id != profile.user_id}">
-              <div class="profile_status onsale"><a href="<c:url value='/profile/' />${profile.user_id}">판매중</a></div>
-              <div class="profile_status offsale"><a href="<c:url value='/profile/' />${profile.user_id}/offsale">판매완료</a></div>
-              <div class="profile_status review"><a href="<c:url value='/profile/' />${profile.user_id}/review">거래후기</a></div>
+              <div class="profile_status onsale">
+                <a href="<c:url value='/profile/' />${profile.user_id}">판매중</a>
+              </div>
+              <div class="profile_status offsale">
+                <a href="<c:url value='/profile/' />${profile.user_id}/offsale">판매완료</a>
+              </div>
+              <div class="profile_status review">
+                <a href="<c:url value='/profile/' />${profile.user_id}/review">거래후기</a>
+              </div>
             </c:if>
           </div>
           <!-- 리뷰 리스트 -->
@@ -88,7 +96,7 @@ uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
         </div>
       </div>
     </section>
-<jsp:include page="../base/footer.jsp"/>
+    <jsp:include page="../base/footer.jsp" />
     <!-- profile.user_id -->
     <input type="hidden" id="id_info" value="${profile.user_id}" />
     <input type="hidden" id="sessionId" value="${sessionScope.id}" />

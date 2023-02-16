@@ -8,6 +8,8 @@ uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
     <meta charset="UTF-8" />
     <title>채팅 - ${chat.other_nickname}</title>
     <link rel="stylesheet" href="${path}/resources/css/chatting/popup_chat.css" />
+    <link rel="icon" type="image/x-icon" href="${path}/resources/images/style/favicon.ico">
+    <link rel="shortcut icon" type="image/x-icon" href="${path}/resources/images/style/favicon.ico">
   </head>
   <body>
     <div class="container">

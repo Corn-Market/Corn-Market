@@ -9,10 +9,12 @@ uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
     <title>Corn-Market 수정</title>
     <c:set var="path" value="${pageContext.request.contextPath}" />
     <link rel="stylesheet" href="${path}/resources/css/post/postmodify.css" />
+    <link rel="icon" type="image/x-icon" href="${path}/resources/images/style/favicon.ico" />
+    <link rel="shortcut icon" type="image/x-icon" href="${path}/resources/images/style/favicon.ico" />
   </head>
 
   <body>
-  	<jsp:include page="../base/header.jsp" />
+    <jsp:include page="../base/header.jsp" />
     <div class="board-wrap">
       <form method="post" action="<c:url value='/post/${post.post_id}/modify'/>" enctype="multipart/form-data">
         <div class="board-img-wrap">
@@ -84,7 +86,7 @@ uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
         </div>
       </form>
     </div>
-	<jsp:include page="../base/footer.jsp" />
+    <jsp:include page="../base/footer.jsp" />
 
     <input type="hidden" value="${post.content}" id="post_content" />
     <input type="hidden" value="${post.category_id}" id="post_category_id" />

@@ -7,6 +7,8 @@ uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
     <meta charset="UTF-8" />
     <title>프로필 사진 변경</title>
     <link rel="stylesheet" href="${path}/resources/css/profile/popup.css" />
+    <link rel="icon" type="image/x-icon" href="${path}/resources/images/style/favicon.ico" />
+    <link rel="shortcut icon" type="image/x-icon" href="${path}/resources/images/style/favicon.ico" />
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
   </head>
   <body>

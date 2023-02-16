@@ -7,6 +7,8 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
+	<link rel="icon" type="image/x-icon" href="${path}/resources/images/style/favicon.ico">
+	<link rel="shortcut icon" type="image/x-icon" href="${path}/resources/images/style/favicon.ico">
 <link rel="stylesheet" href="${path}/resources/css/main/header.css" />
 <script type="text/javascript">
 function enterSearch(){

@@ -8,7 +8,8 @@
 <meta charset="UTF-8">
 <title>채팅 목록</title>
 <link rel="stylesheet" href="${path}/resources/css/chatting/chat_list.css" />
-
+	<link rel="icon" type="image/x-icon" href="${path}/resources/images/style/favicon.ico">
+	<link rel="shortcut icon" type="image/x-icon" href="${path}/resources/images/style/favicon.ico">
 </head>
 <body>
 	<div class="popup-wrap">

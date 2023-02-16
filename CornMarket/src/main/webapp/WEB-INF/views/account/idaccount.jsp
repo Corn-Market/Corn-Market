@@ -1,6 +1,5 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-pageEncoding="UTF-8"%> <%@ taglib uri="http://java.sun.com/jsp/jstl/core"
-prefix="c" %>
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%> <%@ taglib
+uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 
 <!DOCTYPE html>
 <html lang="en">
@@ -11,6 +10,8 @@ prefix="c" %>
     <title>Corn-Market 아이디/비밀번호 찾기</title>
     <c:set var="path" value="${pageContext.request.contextPath}" />
     <link rel="stylesheet" href="${path}/resources/css/account/account.css" />
+    <link rel="icon" type="image/x-icon" href="${path}/resources/images/style/favicon.ico" />
+    <link rel="shortcut icon" type="image/x-icon" href="${path}/resources/images/style/favicon.ico" />
   </head>
 
   <body>
@@ -42,32 +43,17 @@ prefix="c" %>
             <ul>
               <li class="type-list-current">
                 <div class="search-title">
-                  <button
-                    type="button"
-                    id="search-display"
-                    onclick="searchdisplayhp()"
-                    class="arrow-dropdown-hp"
-                  >
+                  <button type="button" id="search-display1" onclick="searchdisplayhp()" class="arrow-dropdown-hp">
                     등록된 휴대폰번호로 찾기
                   </button>
                 </div>
                 <div class="search-type-display-hp">
                   <div class="inputEnter" style="display: block">
-                    <form
-                      action="<c:url value='/account/id/phone'/>"
-                      method="POST"
-                      name="frmPhone"
-                    >
+                    <form action="<c:url value='/account/id/phone'/>" method="POST" name="frmPhone">
                       <div class="inputBox">
                         <div class="styleInput">
-                          <input
-                            id="memberNm1"
-                            name="user_name"
-                            type="text"
-                            class="input1"
-                            placeholder="이름"
-                          />
-                          <span id="nameerror" class="delBtn"></span>
+                          <input id="memberNm1" name="user_name" type="text" class="input1" placeholder="이름" />
+                          <span id="nameerror1" class="delBtn"></span>
                         </div>
                         <div class="styleInput">
                           <input
@@ -83,12 +69,7 @@ prefix="c" %>
                         <p id="hperror" class="error" style="display: none"></p>
                       </div>
                       <div class="btnArea">
-                        <button
-                          type="button"
-                          onclick="idFromPhoneBtn()"
-                          class="btnYellow"
-                          id="hpbtnYellow"
-                        >
+                        <button type="button" onclick="idFromPhoneBtn()" class="btnYellow" id="hpbtnYellow">
                           확인
                         </button>
                       </div>
@@ -98,32 +79,17 @@ prefix="c" %>
               </li>
               <li class="type-list-current">
                 <div class="search-title">
-                  <button
-                    type="button"
-                    id="search-display"
-                    onclick="searchdisplayemail()"
-                    class="arrow-dropdown-email"
-                  >
+                  <button type="button" id="search-display2" onclick="searchdisplayemail()" class="arrow-dropdown-email">
                     등록된 이메일로 찾기
                   </button>
                 </div>
                 <div class="search-type-display-email">
                   <div class="inputEnter" style="display: block">
-                    <form
-                      action="<c:url value='/account/id/mail'/>"
-                      method="POST"
-                      name="frmMail"
-                    >
+                    <form action="<c:url value='/account/id/mail'/>" method="POST" name="frmMail">
                       <div class="inputBox">
                         <div class="styleInput">
-                          <input
-                            id="memberNm2"
-                            name="user_name"
-                            type="text"
-                            class="input1"
-                            placeholder="이름"
-                          />
-                          <span id="nameerror" class="delBtn"></span>
+                          <input id="memberNm2" name="user_name" type="text" class="input1" placeholder="이름" />
+                          <span id="nameerror2" class="delBtn"></span>
                         </div>
                         <div class="emailInput-id">
                           <div class="styleInput-id">
@@ -150,20 +116,10 @@ prefix="c" %>
                           </div>
                         </div>
 
-                        <p
-                          id="emailerror"
-                          class="error"
-                          style="display: none"
-                        ></p>
+                        <p id="emailerror" class="error" style="display: none"></p>
 
                         <div class="btnArea">
-                          <button
-                            type="button"
-                            onclick="idFromMailBtn()"
-                            class="btnYellow"
-                          >
-                            확인
-                          </button>
+                          <button type="button" onclick="idFromMailBtn()" class="btnYellow">확인</button>
                         </div>
                       </div>
                     </form>

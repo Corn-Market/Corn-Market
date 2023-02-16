@@ -1,5 +1,5 @@
-window.addEventListener("load", function () {
-  let slides = document.querySelectorAll(".swiper-slide");
+window.addEventListener('load', function () {
+  let slides = document.querySelectorAll('.swiper-slide');
   let contents = []; //배열
   slides.forEach(function (slide, index) {
     contents[index] = slide.outerHTML;
@@ -12,7 +12,7 @@ window.addEventListener("load", function () {
       index = 1;
     }
 
-    let swiper = document.querySelector(".swiper-wrap");
+    let swiper = document.querySelector('.swiper-wrap');
 
     //애니메이션 효과
     swiper.animate(
@@ -24,11 +24,10 @@ window.addEventListener("load", function () {
       },
       {
         duration: 1500, // 위의효과가 1초간 지속되도록
-        fill: "forwards",
+        fill: 'forwards',
       }
     );
   }
 
   setInterval(nextSlide, 5000);
-
 });

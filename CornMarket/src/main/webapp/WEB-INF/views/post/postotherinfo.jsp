@@ -11,6 +11,8 @@
     <title>Corn-Market - ${post.title}</title>
     <c:set var="path" value="${pageContext.request.contextPath}"/>
     <link rel="stylesheet" href="${path}/resources/css/post/postinfo.css"/>
+    <link rel="icon" type="image/x-icon" href="${path}/resources/images/style/favicon.ico">
+    <link rel="shortcut icon" type="image/x-icon" href="${path}/resources/images/style/favicon.ico">
 </head>
 
 <body>

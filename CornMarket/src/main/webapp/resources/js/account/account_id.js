@@ -32,7 +32,6 @@ function idpopup() {
   } else {
     document.getElementById('hperror').innerHTML = '';
   }
- 
 }
 
 //찾는 아이디 있는지 확인 - 휴대폰찾기
@@ -46,7 +45,7 @@ function checkIdFromPhone() {
   $.ajax({
     type: 'POST',
     url: idPhoneUrl + '/check',
-    headers: { 'content-type': 'application/json' }, 
+    headers: { 'content-type': 'application/json' },
     data: JSON.stringify(idPhone),
     success: function (data) {
       //console.log(data);
@@ -54,13 +53,12 @@ function checkIdFromPhone() {
         idFromPhone();
         $('.error').hide();
       } else if (data == 0) {
-      	$('.error').show();
-        document.getElementById("hperror").innerHTML = "입력하신 정보가 올바르지 않습니다. 다시 확인해주세요."
-        check=false
-     }
+        $('.error').show();
+        document.getElementById('hperror').innerHTML = '입력하신 정보가 올바르지 않습니다. 다시 확인해주세요.';
+        check = false;
+      }
     },
-    error: function (data) {
-    },
+    error: function (data) {},
   }); //ajax
 }
 
@@ -85,14 +83,12 @@ function checkIdFromMail() {
         idFromMail();
         $('.error').hide();
       } else if (data == 0) {
-      	$('.error').show();
-       	document.getElementById("emailerror").innerHTML = "입력하신 정보가 올바르지 않습니다. 다시 확인해주세요."
-        check=false
+        $('.error').show();
+        document.getElementById('emailerror').innerHTML = '입력하신 정보가 올바르지 않습니다. 다시 확인해주세요.';
+        check = false;
       }
     },
-    error: function (data) {
-      
-    },
+    error: function (data) {},
   }); //ajax
 }
 //아이디 찾기 form 제출
