@@ -10,13 +10,16 @@
 
 
 	<typeAliases>
+		<!-- 로그인/회원가입 -->
 		<typeAlias alias="Member" type="com.corn.market.member.domain.Member"/>
 		<typeAlias alias="LoginMember" type="com.corn.market.member.domain.LoginMember"/>
-		
+		<!-- 아이디/비번 찾기 -->
+		<typeAlias alias="AccountResponse" type="com.corn.market.account.domain.AccountResponse"/>
+		<typeAlias alias="AccountDto" type="com.corn.market.account.domain.AccountDto"/>
+		<!-- 판매글 -->
 		<typeAlias alias="Post" type="com.corn.market.post.domain.PostVO"/>
 		<typeAlias alias="PostList" type="com.corn.market.post.domain.PostList"/>
 		<typeAlias alias="Criteria" type="com.corn.market.post.domain.Criteria"/>
-		
 		<!-- 프로필 -->
 		<typeAlias alias="Sale" type="com.corn.market.profile.domain.Sale"/>
 		<typeAlias alias="Review" type="com.corn.market.profile.domain.Review"/>

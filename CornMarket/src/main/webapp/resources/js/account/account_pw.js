@@ -129,7 +129,7 @@ function checkPw() {
   let name = $('#memberNm2').val();
   let mail1 = $('#memberEmail').val();
   let mail2 = $('#memberEmail2').val();
-  let searchPw = {
+  let accountPw = {
     user_id: id,
     user_name: name,
     email_id: mail1,
@@ -139,7 +139,7 @@ function checkPw() {
     type: 'POST',
     url: pwUrl + '/check',
     headers: { 'content-type': 'application/json' }, // 요청 헤더
-    data: JSON.stringify(searchPw),
+    data: JSON.stringify(accountPw),
     success: function (data) {
       //console.log(data);
       if (data == 1) {

@@ -2,7 +2,6 @@ package com.corn.market.member.dao;
 
 import com.corn.market.member.domain.LoginMember;
 import org.apache.ibatis.session.SqlSession;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 import com.corn.market.member.domain.Member;
@@ -11,8 +10,8 @@ import com.corn.market.member.domain.Member;
 public class MemberDao {
 
 	private static String namespace = "com.corn.market.MemberMapper.";
-
 	private final SqlSession session;
+
 	public MemberDao(SqlSession session) {
 		this.session = session;
 	}

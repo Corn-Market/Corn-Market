@@ -65,7 +65,7 @@ uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
           </div>
 
           <div class="login_fourth">
-            <a class="naver-wrap" href="">
+            <a class="naver-wrap" href="" style="display: none">
               <img src="${path}/resources/images/style/naver_login_btn.png" class="simple_login2 login-btn" />
               <span>네이버 로그인</span>
             </a>
@@ -75,7 +75,7 @@ uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
               href=""
               ><img src="${path}/resources/images/style/kakao_login_btn.png" class="simple_login1 login-btn"
             /></a>
-            <a class="google-wrap" href="">
+            <a class="google-wrap" href="" style="display: none">
               <img src="${path}/resources/images/style/google_login_btn.png" class="simple_login3 login-btn" />
               <span>구글 로그인</span>
             </a>

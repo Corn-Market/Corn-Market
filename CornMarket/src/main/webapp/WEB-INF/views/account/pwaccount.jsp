@@ -9,6 +9,8 @@ uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
     <title>Corn-Market 아이디/비밀번호찾기</title>
     <c:set var="path" value="${pageContext.request.contextPath}" />
     <link rel="stylesheet" href="${path}/resources/css/account/account.css" />
+    <link rel="icon" type="image/x-icon" href="${path}/resources/images/style/favicon.ico" />
+    <link rel="shortcut icon" type="image/x-icon" href="${path}/resources/images/style/favicon.ico" />
   </head>
 
   <body>

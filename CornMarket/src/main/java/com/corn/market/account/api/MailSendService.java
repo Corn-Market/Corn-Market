@@ -6,7 +6,6 @@ import javax.mail.MessagingException;
 import javax.mail.internet.InternetAddress;
 import javax.mail.internet.MimeMessage;
 
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.mail.javamail.MimeMessageHelper;
 import org.springframework.stereotype.Service;
@@ -14,10 +13,13 @@ import org.springframework.stereotype.Service;
 @Service
 public class MailSendService {
 
-	@Autowired
-	private JavaMailSender mailSender;
+	private final JavaMailSender mailSender;
 	private int mailCode;
-	
+
+	public MailSendService(JavaMailSender mailSender) {
+		this.mailSender = mailSender;
+	}
+
 	//메일 코드 생성 (난수)
 	public String makeMailCode() {
 		int num = (int)(Math.random()*9000+1000);
