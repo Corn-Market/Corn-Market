@@ -9,7 +9,7 @@ function createNewChatRoom() {
 createNewChatRoom();
 //<input type="button" value="채팅방 생성" id="new_room_btn" /> <br />
 
-//판매글id와 구매자id(세션)로 채팅방 확인
+//판매글 id와 구매자 id(세션)로 채팅방 확인
 function checkChatRoom() {
   let url = $('#chat_url').val();
   let post_id = $('#post_id').val();

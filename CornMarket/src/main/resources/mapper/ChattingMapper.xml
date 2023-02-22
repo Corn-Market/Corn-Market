@@ -1,0 +1,112 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.corn.market.ChattingMapper">
+
+	<!-- 채팅방 새로 등록 -->
+	<insert id="insertChattingRoom" parameterType="ChattingRoom">
+		INSERT INTO chatting_room_tbl22 (room_id,post_id,seller_id,buyer_id)
+		VALUES(#{room_id},#{post_id},#{seller_id},#{buyer_id})
+	</insert>
+
+	<!-- 판매글 아이디로 판매자 아이디 가져오기 -->
+	<select id="selectSellerId" parameterType="String" resultType="String">
+		SELECT user_id FROM post_tbl22 WHERE post_id = #{post_id}
+	</select>
+
+	<!-- 채팅 내용 등록 -->
+	<insert id="insertChattingContent" parameterType="ChattingContent">
+		INSERT INTO chatting_content_tbl22 (room_id,sender_id,chat_content)
+		VALUES(#{room_id},#{sender_id},#{chat_content})
+	</insert>
+
+	<!-- 채팅방 목록 조회 -->
+	<select id="selectChattingRoom" parameterType="String" resultType="ChattingRoomInfo">
+		<![CDATA[
+		SELECT r.room_id,
+			CASE #{user_id}
+				WHEN r.seller_id THEN r.buyer_id
+				WHEN r.buyer_id THEN r.seller_id
+			END AS other_user_id,
+			u.profile_img other_profile_img, u.nickname other_nickname, c.chat_content last_chat_content,
+			DATE_FORMAT(c.send_date, '%Y년 %m월 %d일') last_send_date, t.town_name post_town_name
+		FROM chatting_room_tbl22 r
+		JOIN user_tbl22 u
+		ON
+			(CASE #{user_id}
+				WHEN r.seller_id THEN r.buyer_id
+				WHEN r.buyer_id THEN r.seller_id
+			END) = u.user_id
+		JOIN chatting_content_tbl22 c
+		ON r.room_id = c.room_id
+		JOIN post_tbl22 p
+		ON r.post_id = p.post_id
+		JOIN town_tbl22 t
+		ON p.town_code = t.town_code
+		WHERE r.chatting_status
+			IN(0,
+				(CASE #{user_id}
+					WHEN r.seller_id THEN 2
+					WHEN r.buyer_id THEN 1
+				END)
+			)
+			AND (r.seller_id = #{user_id} OR r.buyer_id = #{user_id})
+			AND c.send_date IN(SELECT MAX(send_date) FROM chatting_content_tbl22 GROUP BY room_id)
+		ORDER BY c.send_date DESC ;
+		]]>
+	</select>
+	
+	<!-- 채팅내용 조회 -->
+	<select id="selectChattingContent" parameterType="String" resultType="ChattingContentList">
+		<![CDATA[
+		SELECT sender_id, DATE_FORMAT(send_date, '%Y년 %m월 %d일') date, chat_content,
+			DATE_FORMAT(send_date, '%H:%i') time
+		FROM chatting_content_tbl22
+		WHERE room_id = #{room_id}  ORDER BY send_date
+		]]>
+	</select>
+
+	<!-- 채팅창 정보 조회 -->
+	<select id="selectChattingInfo" parameterType="Map" resultType="ChattingInfo">
+		SELECT r.seller_id, r.post_id, p.title post_title, p.post_img, u.profile_img other_profile_img,
+		       u.nickname other_nickname, FORMAT(p.price,0) post_price
+		FROM chatting_room_tbl22 r
+		JOIN post_tbl22 p
+		ON r.post_id = p.post_id
+		JOIN user_tbl22 u
+		ON
+		    (CASE #{user_id}
+				WHEN r.seller_id THEN r.buyer_id
+				WHEN r.buyer_id THEN r.seller_id
+			END) = u.user_id
+		WHERE room_id = #{room_id}
+	</select>
+
+	<!-- 판매글id와 구매자id(세션)로 채팅방 확인 (채팅방 생성시) -->
+	<select id="checkChattingRoom" parameterType="Map" resultType="String">
+		SELECT IFNULL(MAX(room_id), 0)
+		FROM chatting_room_tbl22
+		WHERE post_id = #{post_id} AND buyer_id = #{user_id}
+	</select>
+
+	<!-- 채팅방 삭제 -->
+	<update id="updateChattingStatus" parameterType="Map">
+		UPDATE chatting_room_tbl22
+		SET chatting_status =
+			(CASE #{user_id}
+				WHEN seller_id THEN 1
+				WHEN buyer_id THEN 2
+			END)
+		WHERE room_id = #{room_id}
+	</update>
+
+	<!-- 사용자 프로필 이미지, 닉네임 조회 -->
+	<select id="selectUserInfo" parameterType="String" resultType="ChatUserInfo">
+		SELECT nickname, profile_img
+		FROM user_tbl22
+		WHERE user_id = #{user_id}
+	</select>
+
+</mapper>
+
