@@ -4,10 +4,8 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
 
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.corn.market.post.domain.PostList;
 import com.corn.market.profile.dao.ProfileDao;
 import com.corn.market.profile.domain.ProfileReview;
 import com.corn.market.profile.domain.ProfileSale;
@@ -18,9 +16,12 @@ import com.corn.market.profile.domain.Sale;
 @Service
 public class ProfileService {
 
-	@Autowired
-	private ProfileDao dao;
-	
+	private final ProfileDao dao;
+
+	public ProfileService(ProfileDao dao) {
+		this.dao = dao;
+	}
+
 	//프로필+판매내역 조회
 	public ProfileSale getProfileSales(String user_id, String post_status) {
 		//판매내역 가져오기

@@ -1,6 +1,5 @@
 package com.corn.market.profile.controller;
 
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -13,9 +12,12 @@ import com.corn.market.profile.service.ProfileService;
 @Controller
 public class OtherProfileController {
 	
-	@Autowired
-	ProfileService service;
-			
+	private final ProfileService service;
+
+	public OtherProfileController(ProfileService service) {
+		this.service = service;
+	}
+
 	//타인 프로필 기본 페이지 (판매중)
 	@GetMapping("/profile/{user_id}")
 	public String otherProfileOnSale(@PathVariable String user_id, Model model) { 

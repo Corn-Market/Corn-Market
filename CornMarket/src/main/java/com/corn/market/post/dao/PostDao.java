@@ -4,7 +4,6 @@ import java.util.List;
 import java.util.Map;
 
 import org.apache.ibatis.session.SqlSession;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 import com.corn.market.post.domain.Criteria;
@@ -14,9 +13,12 @@ import com.corn.market.post.domain.PostVO;
 @Repository
 public class PostDao {
 
-	@Autowired
-	private SqlSession session;
+	private final SqlSession session;
 	private static String namespace = "com.corn.market.PostMapper.";
+
+	public PostDao(SqlSession session) {
+		this.session = session;
+	}
 
 	// 판매글 전체 조회 - 최신글 (기본)
 	public List<PostList> selectAll() throws Exception {

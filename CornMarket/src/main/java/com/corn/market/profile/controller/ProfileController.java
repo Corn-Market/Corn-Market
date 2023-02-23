@@ -3,7 +3,6 @@ package com.corn.market.profile.controller;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -20,11 +19,14 @@ import com.corn.market.profile.service.ProfileService;
 @Controller
 public class ProfileController {
 	
-	@Autowired
-	ProfileService service;
-	@Autowired
-	private FileUploadService uploadService;
-	
+	private final ProfileService service;
+	private final FileUploadService uploadService;
+
+	public ProfileController(ProfileService service, FileUploadService uploadService) {
+		this.service = service;
+		this.uploadService = uploadService;
+	}
+
 	//본인 프로필 기본 페이지 (판매중)
 	@GetMapping("/profile")
 	public String profileOnSale(HttpSession session, Model model) { 

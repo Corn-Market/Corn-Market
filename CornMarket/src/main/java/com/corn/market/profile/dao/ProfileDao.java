@@ -5,22 +5,24 @@ import java.util.List;
 import java.util.Map;
 
 import org.apache.ibatis.session.SqlSession;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Component;
 
 import com.corn.market.profile.domain.ProfileReview;
 import com.corn.market.profile.domain.ProfileSale;
 import com.corn.market.profile.domain.ProfileUpdate;
 import com.corn.market.profile.domain.Review;
 import com.corn.market.profile.domain.Sale;
+import org.springframework.stereotype.Repository;
 
-@Component
+@Repository
 public class ProfileDao {
 	
-	@Autowired
-	private SqlSession session;
+	private final SqlSession session;
 	private static String namespace = "com.corn.market.ProfileMapper.";
-	
+
+	public ProfileDao(SqlSession session) {
+		this.session = session;
+	}
+
 	//판매내역 조회
 	public List<Sale> selectSale(Map<String, String> saleMap) { // user_id, post_status
 		return session.selectList(namespace+"selectSale", saleMap);

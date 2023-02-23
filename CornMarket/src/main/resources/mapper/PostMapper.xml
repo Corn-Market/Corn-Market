@@ -55,17 +55,17 @@
 	
 	<!-- 판매글 등록 -->
 	<insert id="enroll" parameterType="Post">
-		INSERT INTO post_tbl22
-		VALUES(post_sq.NEXTVAL,#{user_id},#{category_id},
+		INSERT INTO post_tbl22 (user_id,category_id,town_code,title,price,content,post_img)
+		VALUES(#{user_id},#{category_id},
 		  (SELECT town_code FROM address_tbl22 WHERE user_id = #{user_id}
 		  AND addr_id = (SELECT MAX(addr_id) FROM address_tbl22 WHERE user_id = #{user_id}))
-		,#{title},#{price},#{content},DEFAULT,NULL,DEFAULT,#{post_img})
+		,#{title},#{price},#{content},#{post_img})
 	</insert>
 
 	<!-- 판매글 수정 -->
 	<update id="modify" parameterType="Post">
 		UPDATE post_tbl22 
-		SET category_id = #{category_id}, title = #{title}, price = #{price}, content = #{content}, updated = DEFAULT, post_img = #{post_img} 
+		SET category_id = #{category_id}, title = #{title}, price = #{price}, content = #{content}, updated = NOW(), post_img = #{post_img}
 		WHERE post_id = #{post_id}
 	</update>
 

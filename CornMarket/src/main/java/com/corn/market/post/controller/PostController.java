@@ -5,7 +5,6 @@ import java.util.ArrayList;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -24,11 +23,14 @@ import com.corn.market.post.service.PostService;
 @Controller
 public class PostController {
 
-	@Autowired
-	PostService postService;
-	@Autowired
-	private FileUploadService fileService;
-	
+	private final PostService postService;
+	private final FileUploadService fileService;
+
+	public PostController(PostService postService, FileUploadService fileService) {
+		this.postService = postService;
+		this.fileService = fileService;
+	}
+
 	//판매글 검색
 	@GetMapping("/post/search")
 	public String getSearchResult(String keyword, Model model, Criteria cri) 
@@ -36,8 +38,7 @@ public class PostController {
         model.addAttribute("list", postService.getSearchResult(cri, keyword));            
         int total = postService.getSearchTotal(keyword);
         Page pageMake = new Page(cri, total);
-        //System.out.println(cri.getPageNum());
-        model.addAttribute("pageMaker", pageMake);  
+        model.addAttribute("pageMaker", pageMake);
         model.addAttribute("keyword",keyword);
         return "post/postlookup_search";
     } 
@@ -87,7 +88,7 @@ public class PostController {
 		String id = (String) session.getAttribute("id");
 		PostList post = postService.getOnePost(post_id);
 		model.addAttribute("post", post);
-		//model.addAttribute(id);
+		model.addAttribute(id);
 		return "post/postotherinfo";
 	}
 	
@@ -106,7 +107,6 @@ public class PostController {
 		post.setContent(postService.replaceLine(post.getContent()));
 		String url = fileService.multiFileUpload(files, request);  //파일 업로드
 		post.setPost_img(url);  //사진등록
-		//System.out.println("이미지 등록: "+post.getPost_img());
 		postService.registerPost(post); //등록
 		return "redirect:/post";
 	}
@@ -131,7 +131,6 @@ public class PostController {
 		post.setContent(postService.replaceLine(post.getContent()));
 		String url = fileService.multiFileUpload(files, request);  //파일 업로드
 		post.setPost_img(url);  //사진등록
-		//System.out.println("이미지 수정: "+post.getPost_img());
 		postService.modifyPost(post);
 		return "redirect:/post/"+post_id;
 	}
