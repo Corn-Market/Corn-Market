@@ -26,7 +26,7 @@ public class ReviewController {
 	}
 	
 	@PostMapping("/review")
-	public String regReview(ReviewReg review) {
+	public String regReview(ReviewReg review) throws Exception {
 		service.regReview(review);
 		return "redirect:/chatting/list";
 	}
@@ -34,7 +34,7 @@ public class ReviewController {
 	@ResponseBody
 	@RequestMapping(value="/review/post-end", produces = "application/json; charset=utf-8", 
 	method = RequestMethod.POST)
-	public String changePostStatus(@RequestBody String post_id) {
+	public String changePostStatus(@RequestBody String post_id) throws Exception {
 		String status = service.getPostStatus(post_id);
 		if(status.equals("판매중")) {
 			service.modifyPostStatus(post_id);

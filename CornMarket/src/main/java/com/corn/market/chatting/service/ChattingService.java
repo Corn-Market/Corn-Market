@@ -24,7 +24,7 @@ public class ChattingService {
 	}
 
 	//채팅방 새로 등록
-	public String regNewChattingRoom(String post_id, String buyer_id) {
+	public String regNewChattingRoom(String post_id, String buyer_id) throws Exception {
 		//판매글 하나에 구매자 하나의 채팅만 등록해야함
 		String room_id = getChattingRoomId(); //UUID 생성
 		String seller_id = getSellerId(post_id);
@@ -39,24 +39,24 @@ public class ChattingService {
 		return room_id;
 	}
 	//판매글 아이디로 판매자 아이디 가져오기
-	public String getSellerId(String post_id) {
+	public String getSellerId(String post_id) throws Exception {
 		String seller_id = dao.selectSellerId(post_id);
 		return seller_id;
 	}
 	
 	//채팅 내용 등록
-	public void regChattingContent(ChattingContent chattingContent) {
+	public void regChattingContent(ChattingContent chattingContent) throws Exception {
 		dao.insertChattingContent(chattingContent);
 	}
 	
 	//채팅방 목록 조회
-	public List<ChattingRoomInfo> getChattingList(String user_id) {
+	public List<ChattingRoomInfo> getChattingList(String user_id) throws Exception {
 		List<ChattingRoomInfo> list = dao.selectChattingRoom(user_id);
 		return list;
 	}
 	
 	//채팅창 정보 조회 (채팅내용)
-	public ChattingInfo getChattingInfo(String room_id, String user_id) {
+	public ChattingInfo getChattingInfo(String room_id, String user_id) throws Exception {
 		Map<String,String> ids = new HashMap<>();
 		ids.put("room_id",room_id);
 		ids.put("user_id",user_id);
@@ -66,7 +66,7 @@ public class ChattingService {
 	}
 	
 	//판매글 id와 구매자 id(세션)로 채팅방 확인 (채팅방 생성시)
-	public String checkChatRoom(String post_id, String user_id) {
+	public String checkChatRoom(String post_id, String user_id) throws Exception {
 		Map<String,String> ids = new HashMap<>();
 		ids.put("post_id",post_id);
 		ids.put("user_id",user_id);
@@ -75,7 +75,7 @@ public class ChattingService {
 	}
 	
 	//채팅방 삭제
-	public void deleteChatRoom(String room_id, String user_id) {
+	public void deleteChatRoom(String room_id, String user_id) throws Exception {
 		Map<String,String> ids = new HashMap<>();
 		ids.put("room_id",room_id);
 		ids.put("user_id",user_id);
@@ -83,7 +83,7 @@ public class ChattingService {
 	}
 	
 	//채팅 사용자 정보 (프로필 이미지, 닉네임)
-	public ChatUserInfo getUserInfo(String user_id) {
+	public ChatUserInfo getUserInfo(String user_id) throws Exception {
 		return dao.selectUserInfo(user_id);
 	}
 

@@ -16,15 +16,15 @@ public class ReviewDao {
 	}
 
 	//리뷰 등록
-	public void insertReview(ReviewReg review) {
+	public void insertReview(ReviewReg review) throws Exception {
 		session.insert(namespace+"insertReview", review);
 	}
 	//판매글의 거래상태를 거래완료로 수정
-	public void updatePostStatus(String post_id) {
+	public void updatePostStatus(String post_id) throws Exception {
 		session.update(namespace+"updatePostStatus", post_id);
 	}
 	//판매글의 거래상태 가져오기
-	public String selectPostStatus(String post_id) {
+	public String selectPostStatus(String post_id) throws Exception {
 		return session.selectOne(namespace + "selectPostStatus", post_id);
 	}
 	

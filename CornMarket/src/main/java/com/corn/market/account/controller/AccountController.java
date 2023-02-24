@@ -27,14 +27,14 @@ public class AccountController {
 	//휴대폰으로 아이디 찾기 전 확인
 	@ResponseBody
 	@PostMapping("/account/id/phone/check")
-	public int checkSearchIdPhone(@RequestBody AccountIdRequest accountId) {
+	public int checkSearchIdPhone(@RequestBody AccountIdRequest accountId) throws Exception {
 		System.out.println(accountId);
 		//찾는 아이디가 없으면 0, 있으면 1
 		return service.checkIdByPhone(accountId);
 	}
 	//아이디 찾기 - 휴대폰번호로
 	@PostMapping("/account/id/phone")
-	public String searchIdPhone(AccountIdRequest accountId, Model model) {
+	public String searchIdPhone(AccountIdRequest accountId, Model model) throws Exception {
 		AccountResponse account = service.searchIdByPhone(accountId);
 		model.addAttribute("accountId",account);
 		return "account/idsuccess_popup";
@@ -43,13 +43,13 @@ public class AccountController {
 	//이메일로 아이디 찾기 전 확인
 	@ResponseBody
 	@PostMapping("/account/id/mail/check")
-	public int checkSearchIdMail(@RequestBody AccountIdRequest accountId) {
+	public int checkSearchIdMail(@RequestBody AccountIdRequest accountId) throws Exception {
 		//찾는 아이디가 없으면 0, 있으면 1
 		return service.checkIdByMail(accountId);
 	}
 	//아이디 찾기 - 이메일로
 	@PostMapping("/account/id/mail")
-	public String searchIdMail(AccountIdRequest accountId, Model model) {
+	public String searchIdMail(AccountIdRequest accountId, Model model) throws Exception {
 		AccountResponse account = service.searchIdByMail(accountId);
 		model.addAttribute("accountId",account);
 		return "account/idsuccess_popup";
@@ -64,7 +64,7 @@ public class AccountController {
 	//이메일 인증번호 전송전 확인
 	@ResponseBody
 	@PostMapping("/account/pw/mail/check")
-	public int checkMail(@RequestBody String email) {
+	public int checkMail(@RequestBody String email) throws Exception {
 		//이메일이 없으면 0, 있으면 1
 		return service.checkEmail(email);
 	}
@@ -72,13 +72,13 @@ public class AccountController {
 	//비밀번호 찾기 전 확인
 	@ResponseBody
 	@PostMapping("/account/pw/check")
-	public int checkSearchPw(@RequestBody AccountPwRequest accountPw) {
+	public int checkSearchPw(@RequestBody AccountPwRequest accountPw) throws Exception {
 		//찾는 비밀번호가 없으면 0, 있으면 1
 		return service.checkPw(accountPw);
 	}
 	//비밀번호 찾기
 	@PostMapping("/account/pw")
-	public String searchPwPOST(AccountPwRequest accountPw, Model model) {
+	public String searchPwPOST(AccountPwRequest accountPw, Model model) throws Exception {
 		AccountResponse account = service.searchPw(accountPw);
 		model.addAttribute("accountPw", account);
 		return "account/pwsuccess_popup";

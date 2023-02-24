@@ -74,7 +74,7 @@ public class PostDao {
 	}
 	
 	//판매글 검색 (페이징)
-	public List<PostList> selectSearchResult(Map<String, Object> searchMap) {
+	public List<PostList> selectSearchResult(Map<String, Object> searchMap) throws Exception {
 		return session.selectList(namespace + "selectSearchResult", searchMap);
 	}
 	//판매글 검색 총 갯수 

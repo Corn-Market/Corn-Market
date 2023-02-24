@@ -109,7 +109,7 @@ public class PostService {
 	}
 	
 	//판매글 검색 (페이징)
-	public List<PostList> getSearchResult(Criteria cri, String keyword) {
+	public List<PostList> getSearchResult(Criteria cri, String keyword) throws Exception {
 		Map<String, Object> searchMap = new HashMap<String, Object>();
 		searchMap.put("keyword", keyword);
 		searchMap.put("pageNum", cri.getPageNum());

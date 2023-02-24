@@ -24,48 +24,48 @@ public class ChattingDao {
 	}
 
 	//채팅방 새로 등록
-	public void insertChattingRoom(ChattingRoom chattingRoom) {
+	public void insertChattingRoom(ChattingRoom chattingRoom) throws Exception {
 		session.insert(namespace+"insertChattingRoom", chattingRoom);
 	}
 
 	//판매글 아이디로 판매자 아이디 가져오기
-	public String selectSellerId(String post_id) {
+	public String selectSellerId(String post_id) throws Exception {
 		return session.selectOne(namespace+"selectSellerId", post_id);
 	}
 	
 	//채팅 내용 등록
-	public void insertChattingContent (ChattingContent chattingContent) {
+	public void insertChattingContent (ChattingContent chattingContent) throws Exception {
 		session.insert(namespace+"insertChattingContent", chattingContent);
 	}
 	
 	//채팅방 목록 조회
-	public List<ChattingRoomInfo> selectChattingRoom(String user_id) {
+	public List<ChattingRoomInfo> selectChattingRoom(String user_id) throws Exception {
 		return session.selectList(namespace+"selectChattingRoom", user_id);
 	}
 	
 	//채팅내용 조회
-	public List<ChattingContentList> selectChattingContent(String room_id) {
+	public List<ChattingContentList> selectChattingContent(String room_id) throws Exception {
 		return session.selectList(namespace+"selectChattingContent", room_id);
 	}
 	
 	//채팅창 정보 조회 //String room_id, String user_id
-	public ChattingInfo selectChattingInfo(Map<String,String> ids) {
+	public ChattingInfo selectChattingInfo(Map<String,String> ids) throws Exception {
 		return session.selectOne(namespace+"selectChattingInfo", ids);
 	}
 	
 	//판매글id와 구매자id(세션)로 채팅방 확인 (채팅방 생성시) //String post_id, String user_id
-	public String checkChattingRoom(Map<String,String> ids) {
+	public String checkChattingRoom(Map<String,String> ids) throws Exception {
 		//조회 결과 없으면 0 있으면 방id 반환
 		return session.selectOne(namespace+"checkChattingRoom", ids);
 	}
 	
 	//채팅방 삭제 //String room_id, String user_id
-	public void updateChattingStatus (Map<String,String> ids) {
+	public void updateChattingStatus (Map<String,String> ids) throws Exception {
 		session.update(namespace+"updateChattingStatus", ids);
 	}
 	
 	//사용자 프로필 이미지, 닉네임 조회
-	public ChatUserInfo selectUserInfo(String user_id) {
+	public ChatUserInfo selectUserInfo(String user_id) throws Exception {
 		return session.selectOne(namespace+"selectUserInfo", user_id);
 	}
 	

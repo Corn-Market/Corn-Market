@@ -17,34 +17,34 @@ public class AccountDao {
 	}
 
 	//아이디 찾기 - 휴대폰번호로
-	public AccountResponse selectUserIdByPhone (AccountDto accountPhone) {
+	public AccountResponse selectUserIdByPhone (AccountDto accountPhone) throws Exception {
 		return session.selectOne(namespace + "selectUserIdByPhone", accountPhone);
 	}
 	//아이디 확인 - 휴대폰번호로
-	public int checkIdByPhone (AccountDto accountPhone) {
+	public int checkIdByPhone (AccountDto accountPhone) throws Exception {
 		return session.selectOne(namespace + "checkIdByPhone", accountPhone);
 	}
 	
 	//아이디 찾기 - 이메일로
-	public AccountResponse selectUserIdByMail (AccountDto accountMail) {
+	public AccountResponse selectUserIdByMail (AccountDto accountMail) throws Exception {
 		return session.selectOne(namespace + "selectUserIdByMail", accountMail);
 	}
 	//아이디 확인 - 이메일로
-	public int checkIdByMail (AccountDto accountMail) {
+	public int checkIdByMail (AccountDto accountMail) throws Exception {
 		return session.selectOne(namespace + "checkIdByMail", accountMail);
 	}
 
 	//이메일 확인
-	public int checkEmail (String email) {
+	public int checkEmail (String email) throws Exception {
 		return session.selectOne(namespace + "checkEmail", email); //이메일이 없으면 0, 있으면 1
 	}
 	
 	//비밀번호 찾기
-	public AccountResponse selectUserPw (AccountDto account) {
+	public AccountResponse selectUserPw (AccountDto account) throws Exception {
 		return session.selectOne(namespace + "selectUserPw", account);
 	}
 	//비밀번호 확인
-	public int checkPw (AccountDto account) {
+	public int checkPw (AccountDto account) throws Exception {
 		return session.selectOne(namespace + "checkPw", account);
 	}
 

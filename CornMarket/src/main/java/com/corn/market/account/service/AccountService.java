@@ -19,26 +19,26 @@ public class AccountService {
 	}
 
 	//아이디 찾기 - 휴대폰번호로
-	public AccountResponse searchIdByPhone (AccountIdRequest accountId) {
+	public AccountResponse searchIdByPhone (AccountIdRequest accountId) throws Exception {
 		AccountDto accountPhone =
 				new AccountDto(null,accountId.getUser_name(),accountId.getPhone(),null);
 		return dao.selectUserIdByPhone(accountPhone);
 	}
 	//휴대폰번호로 아이디 찾기 전 유효성 확인
-	public int checkIdByPhone (AccountIdRequest accountId) {
+	public int checkIdByPhone (AccountIdRequest accountId) throws Exception {
 		AccountDto accountPhone =
 				new AccountDto(null,accountId.getUser_name(),accountId.getPhone(),null);
 		return dao.checkIdByPhone(accountPhone);
 	}
 	//아이디 찾기 - 이메일로
-	public AccountResponse searchIdByMail (AccountIdRequest accountId) {
+	public AccountResponse searchIdByMail (AccountIdRequest accountId) throws Exception {
 		String email = accountId.getEmail_id() + "@" + accountId.getEmail_domain();
 		AccountDto accountMail =
 				new AccountDto(null,accountId.getUser_name(),null,email);
 		return dao.selectUserIdByMail(accountMail);
 	}
 	//이메일로 아이디 찾기 전 유효성 확인
-	public int checkIdByMail (AccountIdRequest accountId) {
+	public int checkIdByMail (AccountIdRequest accountId) throws Exception {
 		String email = accountId.getEmail_id() + "@" + accountId.getEmail_domain();
 		AccountDto accountMail =
 				new AccountDto(null,accountId.getUser_name(),null,email);
@@ -46,14 +46,14 @@ public class AccountService {
 	}
 
 	//비밀번호 찾기
-	public AccountResponse searchPw (AccountPwRequest accountPw) {
+	public AccountResponse searchPw (AccountPwRequest accountPw) throws Exception {
 		String email = accountPw.getEmail_id() + "@" + accountPw.getEmail_domain();
 		AccountDto account =
 				new AccountDto(accountPw.getUser_id(),accountPw.getUser_name(),null,email);
 		return dao.selectUserPw(account);
 	}
 	//비밀번호 찾기 전 유효성 확인
-	public int checkPw (AccountPwRequest accountPw) {
+	public int checkPw (AccountPwRequest accountPw) throws Exception {
 		String email = accountPw.getEmail_id() + "@" + accountPw.getEmail_domain();
 		AccountDto account =
 				new AccountDto(accountPw.getUser_id(),accountPw.getUser_name(),null,email);
@@ -61,7 +61,7 @@ public class AccountService {
 	}
 
 	//이메일 인증번호 전송전 확인
-	public int checkEmail(String email) {
+	public int checkEmail(String email) throws Exception {
 		return dao.checkEmail(email);
 	}
 }
