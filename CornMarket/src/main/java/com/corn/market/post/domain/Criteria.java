@@ -15,6 +15,7 @@ public class Criteria {
 	/* 기본 생성자 -> 기봅 세팅 : pageNum = 1, amount = 10 */
 	public Criteria() {
 		this(1);
+		this.amount = 12;
 		this.skip = 0;
 	}
 

@@ -88,7 +88,7 @@ public class PostService {
 	public List<PostList> getCategoryList(Criteria cri, String category_id) throws Exception {
 		Map<String, Object> cateMap = new HashMap<String, Object>();
 		cateMap.put("category_id", category_id);
-		cateMap.put("pageNum", cri.getPageNum());
+		cateMap.put("skip", cri.getSkip());
 		cateMap.put("amount", cri.getAmount());
 		List<PostList> list = dao.selectCategoryList(cateMap);
 		getPostImgThumbnail(list);
@@ -112,7 +112,7 @@ public class PostService {
 	public List<PostList> getSearchResult(Criteria cri, String keyword) throws Exception {
 		Map<String, Object> searchMap = new HashMap<String, Object>();
 		searchMap.put("keyword", keyword);
-		searchMap.put("pageNum", cri.getPageNum());
+		searchMap.put("skip", cri.getSkip());
 		searchMap.put("amount", cri.getAmount());
 		List<PostList> list = dao.selectSearchResult(searchMap);
 		getPostImgThumbnail(list);

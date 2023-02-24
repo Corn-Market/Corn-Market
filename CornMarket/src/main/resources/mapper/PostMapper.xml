@@ -85,7 +85,7 @@
 			JOIN user_tbl22 u ON p.user_id = u.user_id
 		WHERE post_status = '판매중'
 		ORDER BY created DESC
-		LIMIT (#{pageNum} - 1) * #{amount}, #{amount}
+		LIMIT #{skip}, #{amount}
     ]]>
     </select>
 
@@ -99,7 +99,7 @@
 			JOIN category_tbl22 c ON p.category_id= c.category_id
 		WHERE p.category_id = #{category_id} AND post_status = '판매중'
 		ORDER BY created DESC
-		LIMIT (#{pageNum} - 1) * #{amount}, #{amount}
+		LIMIT #{skip}, #{amount}
     ]]>
 	</select>
 
@@ -124,7 +124,7 @@
 		      (category_name LIKE CONCAT('%',#{keyword},'%') OR town_name LIKE CONCAT('%',#{keyword},'%')
 		           OR title LIKE CONCAT('%',#{keyword},'%') OR content LIKE CONCAT('%',#{keyword},'%'))
 		ORDER BY created DESC
-		LIMIT (#{pageNum} - 1) * #{amount}, #{amount}
+		LIMIT #{skip}, #{amount}
 	]]>
 	</select>
 	

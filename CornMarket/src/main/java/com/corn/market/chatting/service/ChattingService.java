@@ -61,6 +61,8 @@ public class ChattingService {
 		ids.put("room_id",room_id);
 		ids.put("user_id",user_id);
 		ChattingInfo chattingInfo = dao.selectChattingInfo(ids);
+		String[] imgs = chattingInfo.getPost_img().split(",");
+		chattingInfo.setPost_img(imgs[0]);
 		chattingInfo.setChatlist(dao.selectChattingContent(room_id));
 		return chattingInfo;
 	}
