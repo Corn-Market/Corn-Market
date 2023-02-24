@@ -33,6 +33,12 @@
 		<typeAlias alias="ChattingContentList" type="com.corn.market.chatting.domain.ChattingContentList"/>
 		<typeAlias alias="ChattingInfo" type="com.corn.market.chatting.domain.ChattingInfo"/>
 		<typeAlias alias="ChatUserInfo" type="com.corn.market.chatting.domain.ChatUserInfo"/>
+		<!-- 리뷰 -->
+		<typeAlias alias="ReviewReg" type="com.corn.market.review.domain.ReviewReg"/>
+		<!-- 동네 -->
+		<typeAlias alias="TownInfo" type="com.corn.market.town.domain.TownInfo"/>
+		<typeAlias alias="TownCertification" type="com.corn.market.town.domain.TownCertification"/>
+
 	</typeAliases>
 
 

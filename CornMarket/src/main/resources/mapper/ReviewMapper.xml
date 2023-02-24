@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.corn.market.ReviewMapper">
+
+	<!-- 리뷰 등록 -->
+	<insert id="insertReview" parameterType="ReviewReg">
+		INSERT INTO end_deal_tbl22 (room_id,rate,review) VALUES(#{room_id},#{rate},#{review})
+	</insert>
+
+	<!-- 판매글의 거래상태를 거래완료로 수정 -->
+	<update id="updatePostStatus" parameterType="String">
+		UPDATE post_tbl22 SET post_status = '거래완료' WHERE post_id = #{post_id}
+	</update>
+
+	<!-- 판매글의 거래상태 가져오기 -->
+	<select id="selectPostStatus" parameterType="String" resultType="String">
+		SELECT post_status FROM post_tbl22 WHERE post_id = #{post_id}
+	</select>
+
+</mapper>
+

@@ -1,6 +1,5 @@
 package com.corn.market.review.service;
 
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.corn.market.review.dao.ReviewDao;
@@ -9,9 +8,12 @@ import com.corn.market.review.domain.ReviewReg;
 @Service
 public class ReviewService {
 
-	@Autowired
-	private ReviewDao dao;
-	
+	private final ReviewDao dao;
+
+	public ReviewService(ReviewDao dao) {
+		this.dao = dao;
+	}
+
 	//리뷰 등록
 	public void regReview(ReviewReg review) {
 		dao.insertReview(review);
