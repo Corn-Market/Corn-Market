@@ -30,7 +30,7 @@
 				WHEN r.buyer_id THEN r.seller_id
 			END AS other_user_id,
 			u.profile_img other_profile_img, u.nickname other_nickname, c.chat_content last_chat_content,
-			DATE_FORMAT(c.send_date, '%Y년 %m월 %d일') last_send_date, t.town_name post_town_name
+			DATE_FORMAT(c.send_date, '%Y년 %c월 %d일') last_send_date, t.town_name post_town_name
 		FROM chatting_room_tbl22 r
 		JOIN user_tbl22 u
 		ON
@@ -60,7 +60,7 @@
 	<!-- 채팅내용 조회 -->
 	<select id="selectChattingContent" parameterType="String" resultType="ChattingContentList">
 		<![CDATA[
-		SELECT sender_id, DATE_FORMAT(send_date, '%Y년 %m월 %d일') date, chat_content,
+		SELECT sender_id, DATE_FORMAT(send_date, '%Y년 %c월 %d일') date, chat_content,
 			DATE_FORMAT(send_date, '%H:%i') time
 		FROM chatting_content_tbl22
 		WHERE room_id = #{room_id}  ORDER BY send_date
@@ -69,7 +69,7 @@
 
 	<!-- 채팅창 정보 조회 -->
 	<select id="selectChattingInfo" parameterType="Map" resultType="ChattingInfo">
-		SELECT r.seller_id, r.post_id, p.title post_title, p.post_img, u.profile_img other_profile_img,
+		SELECT room_id, r.seller_id, r.post_id, p.title post_title, p.post_img, u.profile_img other_profile_img,
 		       u.nickname other_nickname, FORMAT(p.price,0) post_price
 		FROM chatting_room_tbl22 r
 		JOIN post_tbl22 p

@@ -15,13 +15,13 @@ function checkChatRoom() {
   let post_id = $('#post_id').val();
   $.ajax({
     type: 'POST',
-    url: url + 'check',
+    url: url + '/check',
     data: post_id,
     contentType: 'text/plain; charset=utf-8',
     success: function (data) {
       //조회 결과 없으면 0 있으면 방id 반환
-      //alert(data);
       let check = data;
+      console.log(check);
       if (check == 0) {
         //채팅방 생성
         let chatAction = $('#chat_url').val();
@@ -34,6 +34,7 @@ function checkChatRoom() {
         //존재하는 채팅방으로 이동
         //<input type="hidden" value="<c:url value='/chatting/list/' />" id="chat_url" />
         let url = $('#chat_url').val() + '/' + check;
+        console.log(url);
         openChatList(url);
       }
     },

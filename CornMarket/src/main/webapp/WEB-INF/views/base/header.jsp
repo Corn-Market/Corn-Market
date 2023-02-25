@@ -39,7 +39,7 @@ function searchItem(){
 				<li><a href="${path}/post/category?id=F1106">반려동물용품</a></li>
 			</div>
 		</nav>
-		<a class="header-img-wrap" onclick="location.href='<c:url value="/main/"/>'"><img
+		<a class="header-img-wrap" onclick="location.href='<c:url value="/main"/>'"><img
 			src="${path }/resources/images/header/logo.png" width="250px" height="120px"></a>
 		<div class="header-search-wrap">
 			<input id="text" class="searchbar" type="search" placeholder="물품이나 동네를 검색해보세요." onkeydown="enterSearch()"/>

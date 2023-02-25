@@ -106,7 +106,7 @@ public class PostController {
 		post.setUser_id(id);
 		post.setContent(postService.replaceLine(post.getContent()));
 		String url = fileService.multiFileUpload(files, request);  //파일 업로드
-		post.setPost_img(url);  //사진등록
+		if(!url.isEmpty()) post.setPost_img(url);  //사진등록
 		postService.registerPost(post); //등록
 		return "redirect:/post";
 	}
@@ -130,7 +130,7 @@ public class PostController {
 		post.setUser_id(id);
 		post.setContent(postService.replaceLine(post.getContent()));
 		String url = fileService.multiFileUpload(files, request);  //파일 업로드
-		post.setPost_img(url);  //사진등록
+		if(!url.isEmpty()) post.setPost_img(url);  //사진등록
 		postService.modifyPost(post);
 		return "redirect:/post/"+post_id;
 	}

@@ -52,7 +52,7 @@ function categoryChange(e) {
 
   if (e.value == 'category') var d = category;
   else if (e.value == 'town') var d = town;
-  console.log('선택 개수:' + d.length);
+  //console.log('선택 개수:' + d.length);
 
   for (let i = 0; i < d.length; i++) {
     for (a in d[i]) {
