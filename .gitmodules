@@ -1,0 +1,3 @@
+[submodule "CornMarket/src/main/resources/db-security"]
+	path = CornMarket/src/main/resources/db-security
+	url = https://github.com/Corn-Market/db-security.git

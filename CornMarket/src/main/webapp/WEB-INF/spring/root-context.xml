@@ -6,17 +6,21 @@
 		http://www.springframework.org/schema/beans https://www.springframework.org/schema/beans/spring-beans.xsd">
 	
 	<!-- Root Context: defines shared resources visible to all other web components -->
-	
+
+	<bean class="org.springframework.beans.factory.config.PropertyPlaceholderConfigurer">
+		<property name="location" value="classpath:db-security/db.properties"></property>
+	</bean>
+
 	<bean id="dataSource" class="org.springframework.jdbc.datasource.DriverManagerDataSource">
 		<property name="driverClassName" value="com.mysql.cj.jdbc.Driver"></property>
-		<property name="url" value="jdbc:mysql://localhost:3307/cornmarket?autoReconnect=true"></property>
-		<property name="username" value="hice"></property>
-		<property name="password" value="corn@22"></property>
+		<property name="url" value="${jdbc.url}"></property>
+		<property name="username" value="${jdbc.username}"></property>
+		<property name="password" value="${jdbc.password}"></property>
 	</bean>
-	
+
 	<bean id="sqlSessionFactory" class="org.mybatis.spring.SqlSessionFactoryBean">
 		<property name="dataSource" ref="dataSource"/>
- 	    <property name="configLocation"  value="classpath:mybatis-config.xml"/>  
+ 	    <property name="configLocation"  value="classpath:mybatis-config.xml"/>
 		<property name="mapperLocations" value="classpath*:mapper/*Mapper.xml"/>
 	</bean>
 
