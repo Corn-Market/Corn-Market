@@ -1,8 +1,8 @@
 // 웹소켓 연결
 var webSocket;
 function connect() {
-  webSocket = new WebSocket('ws://localhost:8090/chat');
-  //webSocket = new WebSocket('ws://ip주소:8090/market/chat');
+  webSocket = new WebSocket('ws://52.79.181.154:8080/chat');
+  //webSocket = new WebSocket('ws://localhost:8090/chat');
 
   webSocket.onopen = onOpen;
   webSocket.onmessage = onMessage;

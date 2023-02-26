@@ -2,23 +2,23 @@ package com.corn.market.chatting.domain;
 
 public class ChatUserInfo {
 
-	private String user_name;
+	private String nickname;
 	private String profile_img;
 	
 	public ChatUserInfo() {}
 
-	public ChatUserInfo(String user_name, String profile_img) {
+	public ChatUserInfo(String nickname, String profile_img) {
 		super();
-		this.user_name = user_name;
+		this.nickname = nickname;
 		this.profile_img = profile_img;
 	}
 
-	public String getUser_name() {
-		return user_name;
+	public String getNickname() {
+		return nickname;
 	}
 
-	public void setUser_name(String user_name) {
-		this.user_name = user_name;
+	public void setNickname(String nickname) {
+		this.nickname = nickname;
 	}
 
 	public String getProfile_img() {
@@ -31,7 +31,7 @@ public class ChatUserInfo {
 
 	@Override
 	public String toString() {
-		return "ChatUserInfo [user_name=" + user_name + ", profile_img=" + profile_img + "]";
+		return "ChatUserInfo [user_name=" + nickname + ", profile_img=" + profile_img + "]";
 	}
 	
 }
