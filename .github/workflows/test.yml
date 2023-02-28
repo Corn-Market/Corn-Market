@@ -12,7 +12,11 @@ jobs:
 
     steps:
       # 체크아웃
-      - uses: actions/checkout@v3
+      - name: Checkout repository and submodules
+        uses: actions/checkout@v3
+        with:
+          token: ${{ secrets.CR_PAT }}
+          submodules: recursive
 
       # JDK version 설정
       - name: Set up JDK 11
