@@ -53,6 +53,6 @@ jobs:
       # Docker 이미지 build & Github에 push
       - name: Build Docker Image
         run: |
-          pwd
+          cd ./CornMarket
           docker build -t ghcr.io/hice11/tomcat-server:latest .
           docker push ghcr.io/hice11/tomcat-server:latest
