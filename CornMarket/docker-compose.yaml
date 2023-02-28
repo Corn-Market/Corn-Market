@@ -1,0 +1,6 @@
+services:
+  tomcat-server:
+    container_name: tomcat-server
+    image: ghcr.io/hice11/tomcat-server:latest
+    ports:
+      - 80:8080
