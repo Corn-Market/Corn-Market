@@ -21,46 +21,44 @@ function idpopup() {
   //let id = document.getElementById("conInput").value
   if (name === '') {
     document.getElementById('nameerror').innerHTML = '이름이 올바르지 않습니다.';
-    check = false;
+    //check = false;
   } else {
     document.getElementById('nameerror').innerHTML = '';
   }
 
   if (hp === '') {
     document.getElementById('hperror').innerHTML = '휴대폰 번호가 올바르지 않습니다.';
-    check = false;
+    //check = false;
   } else {
     document.getElementById('hperror').innerHTML = '';
   }
- 
 }
 
 //찾는 아이디 있는지 확인 - 휴대폰찾기
 function checkIdFromPhone() {
   let name = $('#memberNm1').val();
   let phoneNume = $('#memberHp').val();
-  let idPhone = {
+  let accountId = {
     user_name: name,
     phone: phoneNume,
   };
   $.ajax({
     type: 'POST',
     url: idPhoneUrl + '/check',
-    headers: { 'content-type': 'application/json' }, 
-    data: JSON.stringify(idPhone),
+    headers: { 'content-type': 'application/json' },
+    data: JSON.stringify(accountId),
     success: function (data) {
       //console.log(data);
       if (data == 1) {
         idFromPhone();
         $('.error').hide();
       } else if (data == 0) {
-      	$('.error').show();
-        document.getElementById("hperror").innerHTML = "입력하신 정보가 올바르지 않습니다. 다시 확인해주세요."
-        check=false
-     }
+        $('.error').show();
+        document.getElementById('hperror').innerHTML = '입력하신 정보가 올바르지 않습니다. 다시 확인해주세요.';
+        //check = false;
+      }
     },
-    error: function (data) {
-    },
+    error: function (data) {},
   }); //ajax
 }
 
@@ -69,7 +67,7 @@ function checkIdFromMail() {
   let name = $('#memberNm2').val();
   let mail1 = $('#memberEmail').val();
   let mail2 = $('#memberEmail2').val();
-  let idMail = {
+  let accountId = {
     user_name: name,
     email_id: mail1,
     email_domain: mail2,
@@ -78,21 +76,19 @@ function checkIdFromMail() {
     type: 'POST',
     url: idMailUrl + '/check',
     headers: { 'content-type': 'application/json' }, // 요청 헤더
-    data: JSON.stringify(idMail),
+    data: JSON.stringify(accountId),
     success: function (data) {
       //console.log(data);
       if (data == 1) {
         idFromMail();
         $('.error').hide();
       } else if (data == 0) {
-      	$('.error').show();
-       	document.getElementById("emailerror").innerHTML = "입력하신 정보가 올바르지 않습니다. 다시 확인해주세요."
-        check=false
+        $('.error').show();
+        document.getElementById('emailerror').innerHTML = '입력하신 정보가 올바르지 않습니다. 다시 확인해주세요.';
+        //check = false;
       }
     },
-    error: function (data) {
-      
-    },
+    error: function (data) {},
   }); //ajax
 }
 //아이디 찾기 form 제출

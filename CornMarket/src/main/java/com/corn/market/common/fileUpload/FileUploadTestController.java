@@ -22,7 +22,7 @@ public class FileUploadTestController {
 	
 	//파일 한개
 	@RequestMapping(value = "/profile/test1", method = RequestMethod.POST)
-	public String fileTest1(MultipartFile file, HttpServletRequest request) {
+	public String fileTest1(MultipartFile file, HttpServletRequest request) throws Exception {
 		
 		//서비스 메서드로 파일 업로드
 		String url = uploadService.oneFileUpload(file, request);
@@ -40,7 +40,7 @@ public class FileUploadTestController {
 	
 	//파일 여러개
 	@RequestMapping(value = "/profile/test2", method = RequestMethod.POST)
-	public String fileTest2(MultipartHttpServletRequest files, HttpServletRequest request) {
+	public String fileTest2(MultipartHttpServletRequest files, HttpServletRequest request) throws Exception {
 		
 		//서비스 메서드로 파일 업로드
 		String url = uploadService.multiFileUpload(files, request);

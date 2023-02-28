@@ -7,6 +7,8 @@ uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
     <meta charset="UTF-8" />
     <title>프로필 - ${profile.nickname}</title>
     <link rel="stylesheet" href="${path}/resources/css/profile/profile.css" />
+    <link rel="icon" type="image/x-icon" href="${path}/resources/images/style/favicon.ico">
+    <link rel="shortcut icon" type="image/x-icon" href="${path}/resources/images/style/favicon.ico">
   </head>
   <body>
   <jsp:include page="../base/header.jsp"/>

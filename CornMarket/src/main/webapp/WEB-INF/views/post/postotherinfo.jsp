@@ -11,6 +11,8 @@
     <title>Corn-Market - ${post.title}</title>
     <c:set var="path" value="${pageContext.request.contextPath}"/>
     <link rel="stylesheet" href="${path}/resources/css/post/postinfo.css"/>
+    <link rel="icon" type="image/x-icon" href="${path}/resources/images/style/favicon.ico">
+    <link rel="shortcut icon" type="image/x-icon" href="${path}/resources/images/style/favicon.ico">
 </head>
 
 <body>
@@ -57,7 +59,7 @@
     </div>
     <jsp:include page="../base/footer.jsp" />
     
-    <input type="hidden" value="<c:url value='/chatting/list/' />" id="chat_url" />
+    <input type="hidden" value="<c:url value='/chatting/list' />" id="chat_url" />
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <script src="${path}/resources/js/chatting/chatting_create.js"></script>
 

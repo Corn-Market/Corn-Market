@@ -4,20 +4,21 @@ import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 @Controller
 public class MailApiController {
 	
-	@Autowired
-	private MailSendService mailSendService;
-	
+	private final MailSendService mailSendService;
+
+	public MailApiController(MailSendService mailSendService) {
+		this.mailSendService = mailSendService;
+	}
+
 	//메일 전송 & code 쿠키에 담기
-	@RequestMapping(value = "/account/pw/mail", method = RequestMethod.GET)
+	@GetMapping("/account/pw/mail")
 	public void sendMail(String email,HttpServletRequest request,HttpServletResponse response) {
 		//System.out.println(email);
 		String code = mailSendService.sendMail(email); //메일 전송
@@ -30,7 +31,7 @@ public class MailApiController {
 	
 	//인증 코드 체크
 	@ResponseBody
-	@RequestMapping(value = "/account/pw/mail/code", method = RequestMethod.GET)
+	@GetMapping("/account/pw/mail/code")
 	public String checkMailCode(String mail_code,HttpServletRequest request) {
 		//System.out.println("입력받은 값: "+mail_code);//
 		String cookie_code = "";

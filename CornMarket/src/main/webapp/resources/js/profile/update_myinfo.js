@@ -26,4 +26,3 @@ function change_img() {
     'width=' + popupWidth + ',height=' + popupHeight + ',left=' + popupX + ', top=' + popupY
   );
 }
-

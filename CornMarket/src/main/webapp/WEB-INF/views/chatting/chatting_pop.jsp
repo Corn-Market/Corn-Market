@@ -8,6 +8,8 @@ uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
     <meta charset="UTF-8" />
     <title>채팅 - ${chat.other_nickname}</title>
     <link rel="stylesheet" href="${path}/resources/css/chatting/popup_chat.css" />
+    <link rel="icon" type="image/x-icon" href="${path}/resources/images/style/favicon.ico">
+    <link rel="shortcut icon" type="image/x-icon" href="${path}/resources/images/style/favicon.ico">
   </head>
   <body>
     <div class="container">
@@ -21,7 +23,7 @@ uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
               <div class="body-titlebox">
                 <div class="titlebox1">
                   <img class="chat_profile" src="${path}${info.profile_img}"  onclick="window.opener.location.href='${path}/profile'"/>
-                  <p>${info.user_name}</p>
+                  <p>${info.nickname}</p>
                   <input type="button" class="chatlist_btn" value="채팅목록" onclick="location.href='<c:url value="/chatting/list"/>'"/>
                 </div>
                 <div class="titlebox2" onclick=" window.opener.location.href='<c:url value="/post/${chat.post_id}"/>'">

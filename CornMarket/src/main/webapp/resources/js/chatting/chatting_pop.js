@@ -1,8 +1,8 @@
 // 웹소켓 연결
 var webSocket;
 function connect() {
-  webSocket = new WebSocket('ws://localhost:8090/market/chat');
-  //webSocket = new WebSocket('ws://ip주소:8090/market/chat');
+  webSocket = new WebSocket('ws://52.79.181.154:8080/chat');
+  //webSocket = new WebSocket('ws://localhost:8090/chat');
 
   webSocket.onopen = onOpen;
   webSocket.onmessage = onMessage;
@@ -36,7 +36,8 @@ function send(type, msg) {
 // 웹소켓 서버에 연결되었을 때 호출되는 이벤트
 function onOpen(evt) {
   send('enter', '');
-  //alert('연결되었습니다');
+  let room = $('#room_id').val();
+  //alert('연결되었습니다'+ room);
 }
 // 웹소켓 서버에서 메시지를 받았을 때 호출되는 이벤트
 function onMessage(evt) {
@@ -55,7 +56,7 @@ function onMessage(evt) {
 // 웹소켓 서버와 연결이 끊어졌을 때 호출되는 이벤트
 function onClose(evt) {
   send('out', '');
-  //alert('연결을 끊었습니다');
+  alert('연결이 끊어졌습니다. 다시 연결해주세요.');
 }
 
 /*   HTML 추가 메소드   */

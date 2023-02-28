@@ -1,11 +1,9 @@
 package com.corn.market.post.service;
 
-import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.corn.market.post.dao.PostDao;
@@ -16,24 +14,27 @@ import com.corn.market.post.domain.PostVO;
 @Service
 public class PostService {
 	
-	@Autowired
-	PostDao dao;
-	
+	private final PostDao dao;
+
+	public PostService(PostDao dao) {
+		this.dao = dao;
+	}
+
 	//판매글 전체조회
 	public List<PostList> getPostList() throws Exception {
-		List<PostList> list = (ArrayList<PostList>) dao.selectAll();
+		List<PostList> list = dao.selectAll();
 		getPostImgThumbnail(list);
 		return list;
 	}
 	//판매글 카테고리별 조회
 	public List<PostList> getPostCategoryList(String category_id) throws Exception {
-		List<PostList> list = (ArrayList<PostList>) dao.selectCategory(category_id);
+		List<PostList> list = dao.selectCategory(category_id);
 		getPostImgThumbnail(list);
 		return list;
 	}
 	//판매글 지역별 조회
 	public List<PostList> getPostTownList(String town_code) throws Exception {
-		List<PostList> list = (ArrayList<PostList>) dao.selectTown(town_code);
+		List<PostList> list = dao.selectTown(town_code);
 		getPostImgThumbnail(list);
 		return list;
 	}
@@ -78,7 +79,7 @@ public class PostService {
 
 	// 판매물  목록 + 페이징
 	public List<PostList> getListPaging(Criteria cri) throws Exception {
-		List<PostList> list = (ArrayList<PostList>) dao.getListPaging(cri);
+		List<PostList> list = dao.getListPaging(cri);
 		getPostImgThumbnail(list);
 		return list;
 	}
@@ -87,9 +88,9 @@ public class PostService {
 	public List<PostList> getCategoryList(Criteria cri, String category_id) throws Exception {
 		Map<String, Object> cateMap = new HashMap<String, Object>();
 		cateMap.put("category_id", category_id);
-		cateMap.put("pageNum", cri.getPageNum());
+		cateMap.put("skip", cri.getSkip());
 		cateMap.put("amount", cri.getAmount());
-		List<PostList> list = (ArrayList<PostList>) dao.selectCategoryList(cateMap);
+		List<PostList> list = dao.selectCategoryList(cateMap);
 		getPostImgThumbnail(list);
 		return list;
 	}
@@ -108,12 +109,12 @@ public class PostService {
 	}
 	
 	//판매글 검색 (페이징)
-	public List<PostList> getSearchResult(Criteria cri, String keyword) {
+	public List<PostList> getSearchResult(Criteria cri, String keyword) throws Exception {
 		Map<String, Object> searchMap = new HashMap<String, Object>();
 		searchMap.put("keyword", keyword);
-		searchMap.put("pageNum", cri.getPageNum());
+		searchMap.put("skip", cri.getSkip());
 		searchMap.put("amount", cri.getAmount());
-		List<PostList> list = (ArrayList<PostList>) dao.selectSearchResult(searchMap);
+		List<PostList> list = dao.selectSearchResult(searchMap);
 		getPostImgThumbnail(list);
 		return list;
 	}

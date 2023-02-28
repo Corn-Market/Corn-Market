@@ -7,8 +7,8 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
-
-import org.springframework.beans.factory.annotation.Autowired;
+import com.corn.market.member.domain.LoginMember;
+import com.corn.market.member.service.MemberService;
 import org.springframework.http.HttpEntity;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpMethod;
@@ -22,7 +22,6 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.client.RestTemplate;
 
-import com.corn.market.member.dao.MemberDao;
 import com.corn.market.member.domain.KakaoToken;
 import com.corn.market.member.domain.Member;
 import com.fasterxml.jackson.core.JsonParseException;
@@ -32,11 +31,13 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 @Controller
 public class MemberController {
 
-	@Autowired
-	MemberDao dao;
+	private final MemberService memberService;
 
-	//----------------------회원가입---------------------//
-	// 회원가입 페이지 이동 
+	public MemberController(MemberService memberService) {
+		this.memberService = memberService;
+	}
+
+	// 회원가입 페이지 이동
 	@GetMapping("/signup")
 	public String signupForm() {
 		return "signup/signUp";
@@ -45,29 +46,69 @@ public class MemberController {
 	//회원가입 완료  
 	@PostMapping("/signup")
 	public String signupPOST(Member member) throws Exception {
-		dao.memberSignup(member);
+		memberService.memberSignup(member);
 		return "redirect:/login";
 	}
 
-	//아이디 중복체크 
+	// 로그인페이지
+	@GetMapping("/login")
+	public String loginForm() {
+		return "login/login";
+	}
+
+	//아이디 중복체크
 	@ResponseBody
 	@PostMapping("/idcheck")
 	public int idcheck(@RequestBody String user_id) throws Exception {
-		int result= dao.idCheck(user_id);	
+		int result= memberService.idCheck(user_id);
 		//System.out.println(user_id + " : " + result);
-		return result; //아이디가 있으면 1 없으면 0
-	} 
+		return result; //중복이면 1 아니면 0
+	}
 
-	//닉네임 중복체크 
+	//닉네임 중복체크
 	@ResponseBody
 	@PostMapping("/nickcheck")
 	public int nickcheck(@RequestBody String nickname) throws Exception {
-		int result=dao.nicknameCheck(nickname);
+		int result = memberService.nicknameCheck(nickname);
 		//System.out.println(nickname + " : " + result);
-		return result; //닉네임이 있으면 1 없으면 0
-	} 
+		return result; //중복이면 1 아니면 0
+	}
 
-	//----------------------로그인 --------------------//
+	// 로그인 전 아이디, 비밀번호 확인
+	@ResponseBody
+	@PostMapping("/login/checklogin")
+	public int checkLogin(@RequestBody LoginMember member) throws Exception {
+		// 아이디 비밀번호 확인
+		int result = memberService.checkLogin(member);
+		return result; //아이디 비밀번호 일치하면 1, 아니면 0
+	}
+
+	// 로그인 진행
+	@PostMapping("/login")
+	public String login(LoginMember member, boolean rememberMe,
+						HttpServletResponse response,HttpServletRequest request) throws Exception {
+		if(memberService.checkLogin(member)!=1) return "redirect:/login";
+		// 로그인 유지 체크 확인
+		if (rememberMe == true) {
+			Cookie cookie = new Cookie("userId", member.getUser_id());
+			cookie.setMaxAge(60 * 60 * 24 * 7);
+			cookie.setPath("/");
+			response.addCookie(cookie);
+		}
+		// 아이디 세션 등록
+		HttpSession session= request.getSession(); // 세션 얻어오는거임
+		session.setAttribute("id", member.getUser_id());
+		// 메인화면으로 이동
+		return "redirect:/main";
+	}
+
+	// 로그아웃
+	@GetMapping("/logout")
+	public String logout(HttpSession session) {
+		session.removeAttribute("id");
+		session.invalidate();
+		return "redirect:/login";
+	}
 
 	//카카오 로그인
 	@GetMapping("/oauth/callback")
@@ -115,51 +156,7 @@ public class MemberController {
 		return "카카오 토큰 요청 완료, 토큰요청에 대한 응답  :"+response.getBody(); 
 	}
 
-	// 로그인페이지  
-	@GetMapping("/login")
-	public String loginForm() {
-		return "login/login";
-	} 
 
-	// 로그인 전 아이디, 비밀번호 확인
-	@ResponseBody
-	@PostMapping("/login/checklogin")
-	public int checkLogin(@RequestBody Member member) throws Exception {
-		// 아이디 비밀번호 확인
-		int result = dao.checkLogin(member); 
-		return result; //아이디 비밀번호 일치하면 1, 아니면 0
-	}
-
-	// 로그인 진행 
-	@PostMapping("/login")
-	public String login(Member member, boolean rememberMe, 
-			HttpServletResponse response,HttpServletRequest request) throws Exception {
-
-		//System.out.println("id : " + member.getUser_id());
-		//System.out.println("passwd : " + member.getUser_pw());
-		//System.out.println("rememberMe : " + rememberMe);
-
-		// 로그인 유지 체크 확인 
-		if (rememberMe == true) { 
-			Cookie cookie = new Cookie("userId", member.getUser_id());
-			cookie.setMaxAge(60 * 60 * 24 * 7);
-			cookie.setPath("/"); 
-			response.addCookie(cookie);
-		}
-		// 아이디 세션 등록 
-		HttpSession session= request.getSession(); // 섹션 얻어오는거임 
-		session.setAttribute("id", member.getUser_id());
-		// 메인화면으로 이동 
-		return "redirect:/main";
-	}
-
-	// 로그아웃 
-	@GetMapping("/logout")
-	public String logout(HttpSession session) {
-		session.removeAttribute("id");
-		session.invalidate();
-		return "redirect:/login";
-	}
 
 }
 

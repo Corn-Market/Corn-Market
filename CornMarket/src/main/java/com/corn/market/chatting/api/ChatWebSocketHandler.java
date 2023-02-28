@@ -44,6 +44,7 @@ public class ChatWebSocketHandler extends TextWebSocketHandler {
 		case "enter":
 			//클라이언트 연결, Map에 세션 저장
 			sessionList.put(info, session);
+			//log("채팅 연결:"+info);
 			break;
 		case "send_msg":
 			//같은 채팅방에 메세지 전송
@@ -58,7 +59,7 @@ public class ChatWebSocketHandler extends TextWebSocketHandler {
 			String chat_content = chatContent.get("chat_content");
 			ChattingContent chattingContent = new ChattingContent(room_id, sender_id, chat_content);
 			service.regChattingContent(chattingContent);
-			//System.out.println("데이터 저장");
+			//log("채팅 내용: "+chattingContent);
 			break;
 		case "out":
 			//클라이언트 연결 해제, 세션 삭제

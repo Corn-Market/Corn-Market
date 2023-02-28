@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.corn.market.TownMapper">
+
+	<!-- 구 이름으로 town code 가져오기 -->
+	<select id="selectTownCode" parameterType="TownInfo" resultType="String">
+		SELECT town_code FROM town_tbl22 WHERE town_name = #{town_name}
+	</select>
+
+	<!-- 동네인증 이전 기록 삭제 (트랜잭션 사용) -->
+	<delete id="deletePrevAddress" parameterType="String">
+		DELETE FROM address_tbl22 WHERE user_id = #{user_id}
+	</delete>
+
+	<!-- 동네인증 등록 (트랜잭션 사용) -->
+	<insert id="insertNewAddress" parameterType="TownCertification">
+		INSERT INTO address_tbl22 (user_id,town_code,latitude,longitude)
+		VALUES(#{user_id},#{town_code},#{latitude},#{longitude})
+	</insert>
+
+	<!-- 동네인증 아이디당 이전 인증기록 개수 체크 -->
+	<select id="selectCountAddress" parameterType="String" resultType="int">
+		SELECT COUNT(*) FROM address_tbl22 HERE user_id = #{user_id}
+	</select>
+
+
+</mapper>
+
