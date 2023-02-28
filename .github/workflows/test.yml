@@ -35,6 +35,8 @@ jobs:
       - name: Build with Maven
         run: |
           pwd
+          ls
+          chmod +x mvnw
           cd ./CornMarket
           ./mvnw clean package
 
