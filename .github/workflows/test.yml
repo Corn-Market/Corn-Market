@@ -34,10 +34,8 @@ jobs:
       # Maven build
       - name: Build with Maven
         run: |
-          pwd
-          ls
-          chmod +x mvnw
           cd ./CornMarket
+          chmod +x mvnw
           ./mvnw clean package
 
       # Docker GitHub 로그인
