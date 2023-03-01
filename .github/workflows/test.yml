@@ -72,4 +72,4 @@ jobs:
             docker rm -f tomcat-server
             docker rmi ghcr.io/hice11/tomcat-server:latest
             docker pull ghcr.io/hice11/tomcat-server:latest
-            docker-compose up -d
+            docker container run --name tomcat-server -d -p 80:8080 ghcr.io/hice11/tomcat-server:latest
