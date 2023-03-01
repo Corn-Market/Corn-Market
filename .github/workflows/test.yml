@@ -67,6 +67,7 @@ jobs:
           key: ${{ secrets.EC2_SSH_KEY }}
           port: ${{ secrets.EC2_SSH_PORT }}
           script_stop: true
+          debug: true
           script: |
             docker rm -f tomcat-server
             docker rmi ghcr.io/hice11/tomcat-server:latest
