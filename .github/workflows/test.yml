@@ -56,3 +56,19 @@ jobs:
           cd ./CornMarket
           docker build -t ghcr.io/hice11/tomcat-server:latest .
           docker push ghcr.io/hice11/tomcat-server:latest
+
+      # EC2 연결 & docker 컨테이너 실행
+      - name: EC2 SSH
+        uses: appleboy/ssh-action@v0.1.8
+        with:
+          host: ${{ secrets.EC2_HOST }}
+          username: ${{ secrets.EC2_USERNAME }}
+          password: ${{ secrets.EC2_PASSWORD }}
+          key: ${{ secrets.EC2_SSH_KEY }}
+          port: ${{ secrets.EC2_SSH_PORT }}
+          script_stop: true
+          script: |
+            docker rm -f tomcat-server
+            docker rmi ghcr.io/hice11/tomcat-server:latest
+            docker pull ghcr.io/hice11/tomcat-server:latest
+            docker-compose up -d
