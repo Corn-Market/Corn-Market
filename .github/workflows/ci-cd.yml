@@ -2,9 +2,9 @@ name: Build & Docker image Push
 
 on:
   push:
-    branches: ['actions-CI/CD']
+    branches: ['main']
   pull_request:
-    branches: ['actions-CI/CD']
+    branches: ['main']
 
 jobs:
   build:
@@ -57,7 +57,7 @@ jobs:
           docker build -t ghcr.io/hice11/tomcat-server:latest .
           docker push ghcr.io/hice11/tomcat-server:latest
 
-      # EC2 연결 & Docker 컨테이너 실행
+      # EC2 연결 & Docker 톰캣 서버 컨테이너 실행
       - name: EC2 SSH
         uses: appleboy/ssh-action@v0.1.8
         with:
