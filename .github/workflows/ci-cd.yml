@@ -69,7 +69,6 @@ jobs:
           script_stop: true
           debug: true
           script: |
-            docker rm -f tomcat-server
-            docker rmi ghcr.io/hice11/tomcat-server:latest
+            docker rm -f tomcat-server || true && docker rmi ghcr.io/hice11/tomcat-server:latest || true
             docker pull ghcr.io/hice11/tomcat-server:latest
             docker container run --name tomcat-server -d -p 80:8080 ghcr.io/hice11/tomcat-server:latest
