@@ -54,8 +54,9 @@ jobs:
       - name: Build Docker Image
         run: |
           cd ./CornMarket
-          docker build -t ghcr.io/hice11/tomcat-server:latest .
-          docker push ghcr.io/hice11/tomcat-server:latest
+          docker pull ghcr.io/hice11/corn-ssl:1.0
+          docker build -t ghcr.io/hice11/corn-ssl-server:latest .
+          docker push ghcr.io/hice11/corn-ssl-server:latest
 
       # EC2 연결 & Docker 톰캣 서버 컨테이너 실행
       - name: EC2 SSH
@@ -69,6 +70,6 @@ jobs:
           script_stop: true
           debug: true
           script: |
-            docker rm -f tomcat-server || true && docker rmi ghcr.io/hice11/tomcat-server:latest || true
-            docker pull ghcr.io/hice11/tomcat-server:latest
-            docker container run --name tomcat-server -d -p 80:8080 ghcr.io/hice11/tomcat-server:latest
+            docker rm -f corn-ssl-server || true && docker rmi ghcr.io/hice11/corn-ssl-server:latest || true
+            docker pull ghcr.io/hice11/corn-ssl-server:latest
+            docker container run --name corn-ssl-server -d -p 80:8080 ghcr.io/hice11/corn-ssl-server:latest

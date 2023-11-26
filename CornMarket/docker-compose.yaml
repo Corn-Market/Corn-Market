@@ -1,6 +1,7 @@
 services:
   tomcat-server:
-    container_name: tomcat-server
-    image: ghcr.io/hice11/tomcat-server:latest
+    container_name: corn-ssl-server
+    image: ghcr.io/hice11/corn-ssl-server:latest
     ports:
       - 80:8080
+      - 443:8443

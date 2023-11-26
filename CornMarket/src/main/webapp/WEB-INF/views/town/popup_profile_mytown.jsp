@@ -36,7 +36,7 @@ uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
     </div>
     <div id="data_div" style="display: none;"></div>
 
-    <script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=93ce7269a8f7fe1402b282d3008199ed&libraries=services"></script>
+    <script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=673ea1257683c3d7a37cb689d77320ea&libraries=services"></script>
     <script src="${path}/resources/js/town/town_popup.js"></script>
     <script>
       let url_profile = '<c:url value="/profile" />';
