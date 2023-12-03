@@ -1,7 +1,7 @@
 // 웹소켓 연결
 var webSocket;
 function connect() {
-  webSocket = new WebSocket('ws://43.202.105.22:443/chat');
+  webSocket = new WebSocket('wss://43.202.105.22:443/chat');
   //webSocket = new WebSocket('ws://localhost:8090/chat');
 
   webSocket.onopen = onOpen;
